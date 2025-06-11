@@ -1,0 +1,8 @@
+:root {
+  /* font weight */
+  --font-weight-bold: 700;
+
+  /* gradient color */
+  --color-gradient-left: hsl(248, 17%, 9%);
+  --color-gradient-right: hsl(255, 22%, 4%);
+}

@@ -1,0 +1,71 @@
+/* フォント */
+@theme inline {
+  --font-jet-brains-mono: var(--font-jet-brains-mono);
+}
+
+/* カラー */
+@theme {
+  --color-white: hsl(0, 100%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+
+  --color-grey-*: initial;
+  --color-grey-200: hsl(252, 11%, 91%);
+  --color-grey-600: hsl(251, 9%, 53%);
+  --color-grey-700: hsl(248, 5%, 34%);
+  --color-grey-800: hsl(248, 10%, 15%);
+  --color-grey-850: hsl(248, 15%, 11%);
+  --color-grey-900: hsl(248, 17%, 9%);
+  --color-grey-950: hsl(255, 22%, 4%);
+
+  --color-green-*: initial;
+  --color-green-200: hsl(127, 100%, 82%);
+
+  --color-yellow-*: initial;
+  --color-yellow-300: hsl(42, 91%, 68%);
+
+  --color-orange-*: initial;
+  --color-orange-400: hsl(13, 95%, 66%);
+
+  --color-red-*: initial;
+  --color-red-500: hsl(0, 91%, 63%);
+
+  --color-gradient-left: var(--color-gradient-left);
+  --color-gradient-right: var(--color-gradient-right);
+}
+
+/* spacing */
+@theme {
+  --spacing-*: initial;
+  --spacing-0: 0;
+  --spacing-100: 0.5rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-800: 4rem;
+  --spacing-1000: 5rem;
+  --spacing-1200: 6rem;
+  --spacing-1300: 6.5rem;
+  --spacing-1500: 7.5rem;
+  --spacing-1600: 8rem;
+  --spacing-1800: 9rem;
+  --spacing-2200: 11rem;
+  --spacing-2300: 11.5rem;
+
+  --spacing-clamp-100-to-200: clamp(0.5rem, 0.023rem + 2.04vw, 1rem);
+  --spacing-clamp-200-to-300: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
+  --spacing-clamp-200-to-400: clamp(1rem, 0.046rem + 4.07vw, 2rem);
+  --spacing-clamp-600-to-800: clamp(3rem, 2.046rem + 4.07vw, 4rem);
+}
+
+@theme {
+  --breakpoint-*: initial;
+  /* @mediaクエリ内ではvar()は許可されないため値を複製 */
+  /* メディアクエリでは、値に応じて、中のスタイルを適用する。
+  つまり、メディアクエリが先に判断していないと、スタイルを適用できないため、実行時に解決されるCSS変数は使うことができない。 */
+  /* 参考URL：https://github.com/tailwindlabs/tailwindcss/discussions/15113 */
+  --breakpoint-mobile: 375px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1440px;
+}

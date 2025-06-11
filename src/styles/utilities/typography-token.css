@@ -1,0 +1,63 @@
+@utility typo-1 {
+  font-family: var(--font-jet-brains-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(
+    2rem,
+    2.477rem + -2.04vw,
+    1.5rem
+  ); /* max-tablet: 24px -> 32px */
+  line-height: clamp(
+    2rem,
+    1.404rem + 2.54vw,
+    2.625rem
+  ); /* max-tablet: 32px -> 42px */
+  letter-spacing: 0;
+}
+
+@utility typo-title {
+  font-family: var(--font-jet-brains-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(
+    1rem,
+    0.523rem + 2.04vw,
+    1.5rem
+  ); /* 1max-tablet: 6px -> 24px */
+  line-height: clamp(
+    1.25rem,
+    0.534rem + 3.05vw,
+    2rem
+  ); /* max-tablet: 20px -> 32px */
+  letter-spacing: 0;
+}
+
+@utility typo-label {
+  font-family: var(--font-jet-brains-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(
+    1.125rem,
+    0.767rem + 1.53vw,
+    1.5rem
+  ); /* max-tablet: 18px -> 24px */
+  line-height: clamp(
+    1.5rem,
+    1.023rem + 2.04vw,
+    2rem
+  ); /* max-tablet: 24px -> 32px */
+  letter-spacing: 0;
+}
+
+@utility typo-main {
+  font-family: var(--font-jet-brains-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(
+    1rem,
+    0.881rem + 0.51vw,
+    1.125rem
+  ); /* max-tablet: 16 -> 18px */
+  line-height: clamp(
+    1.25rem,
+    1.011rem + 1.02vw,
+    1.5rem
+  ); /* max-tablet: 20px -> 24px */
+  letter-spacing: 0;
+}
