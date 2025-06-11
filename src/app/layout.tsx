@@ -1,15 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import {  Rubik } from 'next/font/google';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+import '@/styles/globals.css';
+
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
+  style:"normal",
+  weight:["300","400","500"]
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const rubikItalic = Rubik({
+  variable:"--font-rubik-italic",
   subsets: ['latin'],
+  style:"italic",
+  weight:["400"]
 });
 
 export const metadata: Metadata = {
@@ -25,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${rubik.variable} ${rubikItalic.variable} antialiased`}
       >
         {children}
       </body>
