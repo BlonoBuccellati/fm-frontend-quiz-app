@@ -1,4 +1,4 @@
-import IconMoon from "./images/icon-moon-dark.svg";
-import IconSum from "./images/icon-sun-dark.svg";
+import IconMoon from "./images/icon-moon.svg";
+import IconSun from "./images/icon-sun.svg";
 
-export { IconSum, IconMoon };
+export { IconSun, IconMoon };

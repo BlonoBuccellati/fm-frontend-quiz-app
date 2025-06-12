@@ -1,9 +1,9 @@
-import LightDarkSwitch from "@/components/light-dark-switch";
+import ThemeSwitch from "@/components/theme-switch";
 
 export default function Home() {
   return (
     <div className="">
-      <LightDarkSwitch />
+      <ThemeSwitch />
     </div>
   );
 }
