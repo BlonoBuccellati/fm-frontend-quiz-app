@@ -5,6 +5,6 @@
 @import "./utilities/typography-token.css";
 
 body {
-  @apply bg-background;
+  @apply bg-background text-foreground;
   font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
 }
