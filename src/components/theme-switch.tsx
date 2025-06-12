@@ -1,4 +1,5 @@
 "use client";
+
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -48,16 +49,11 @@ const ThemeSwitch = () => {
         checked={theme === "dark"}
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />
-      <button
-        onClick={() => {
-          setTheme("dark");
-        }}
-        className="hover:cursor-pointer"
-      >
-        <IconMoon
-          className={theme === "dark" ? "text-white" : "text-grey-500"}
-        />
-      </button>
+      <ThemeButton
+        icon={IconMoon}
+        onClick={() => setTheme("dark")}
+        isDark={isDark}
+      />
     </div>
   );
 };

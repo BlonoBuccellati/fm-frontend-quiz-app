@@ -5,11 +5,12 @@ import "@/styles/globals.css";
 
 import { ThemeProvider } from "./../src/components/provider/theme-provider";
 
-export const globalTypes = {
-  themeColor: {
+export const globalTypes: Preview["globalTypes"] = {
+  theme: {
+    //
     name: "Theme Color",
     description: "Global light/dark theme for components",
-    defaultValue: "light",
+    defaultValue: "system",
     toolbar: {
       title: "Theme Color",
       items: [
@@ -17,6 +18,7 @@ export const globalTypes = {
         { title: "Dark", value: "dark" },
         { title: "default", value: "system" },
       ],
+      dynamicTitle: true,
     },
   },
 };
@@ -24,7 +26,7 @@ export const globalTypes = {
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      const mode = context.globals.themeColor as "light" | "dark" | "system";
+      const mode = context.globals.theme as "light" | "dark" | "system";
 
       // Storybook 用に forcedTheme を追加したいときだけマージ
       const propsWithForced = mode === "system" ? {} : { forcedTheme: mode };
