@@ -1,10 +1,9 @@
-import Test from "@/components/test";
+import LightDarkSwitch from "@/components/light-dark-switch";
 
 export default function Home() {
   return (
     <div className="">
-      <div> fdaf</div>
-      <Test />
+      <LightDarkSwitch />
     </div>
   );
 }
