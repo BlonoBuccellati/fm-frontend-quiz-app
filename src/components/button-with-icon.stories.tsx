@@ -29,7 +29,7 @@ export const CSSButton: Story = {
   args: {
     title: "CSS",
     icon: IconCss,
-    iconColor: "css",
+    iconBgColor: "css",
   },
   render: ({ ...props }) => (
     <div>
@@ -41,7 +41,7 @@ export const JSButton: Story = {
   args: {
     title: "Javascript",
     icon: IconJavascript,
-    iconColor: "javaScript",
+    iconBgColor: "javaScript",
   },
   render: ({ ...props }) => (
     <div>
@@ -53,7 +53,7 @@ export const AccessibilityButton: Story = {
   args: {
     title: "Accessibility",
     icon: IconAccessibility,
-    iconColor: "accessibility",
+    iconBgColor: "accessibility",
   },
   render: ({ ...props }) => (
     <div>

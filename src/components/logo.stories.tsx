@@ -1,19 +1,17 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Button } from "./button";
+import Logo from "./logo";
 
 const meta = {
-  component: Button,
-  title: "ui/Button",
+  component: Logo,
+  title: "Logo",
   tags: ["autodocs"],
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Logo>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    children: "Submit Answer",
-  },
+  args: {},
 };

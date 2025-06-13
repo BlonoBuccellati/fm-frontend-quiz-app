@@ -3,24 +3,30 @@
 import { cn } from "@/lib/utils";
 
 import { Button } from "./ui/button";
+import IconContainer from "./ui/icon-container";
 
 type OptionButtonProps = {
   isSelected: boolean;
   option: string;
   no: string;
   onClick: () => void;
+  className?: string;
+  icon?: React.FC<React.SVGProps<SVGElement>>;
 };
 const OptionButton = ({
   option,
   no,
   isSelected,
   onClick,
+  className,
+  icon: IconAnswer,
 }: OptionButtonProps) => {
   return (
     <Button
       variant="withIcon"
       className={cn(
-        "flex w-full items-center space-x-200",
+        "flex items-center justify-between",
+        className,
         isSelected && "ring-3 ring-purple-600 ring-inset",
       )}
       type="button"
@@ -28,15 +34,18 @@ const OptionButton = ({
       aria-checked={isSelected}
       onClick={onClick}
     >
-      <span
-        className={cn(
-          "bg-grey-50 dark:text-grey-500 flex size-[40px] items-center justify-center rounded-[6px]",
-          isSelected && "dark:text-whites bg-purple-600 text-white",
-        )}
-      >
-        {no}
-      </span>
-      <option className="typo-4">{option}</option>
+      <div className="flex items-center space-x-200">
+        <IconContainer
+          className={cn(
+            "bg-grey-50 dark:text-grey-500",
+            isSelected && "bg-purple-600 text-white dark:text-white",
+          )}
+        >
+          {no}
+        </IconContainer>
+        <div className="typo-4">{option}</div>
+      </div>
+      {IconAnswer && <IconAnswer />}
     </Button>
   );
 };
