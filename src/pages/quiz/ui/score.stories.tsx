@@ -4,7 +4,7 @@ import Score from "./score";
 
 const meta = {
   component: Score,
-  title: "Score",
+  title: "quiz/Score",
   tags: ["autodocs"],
 } satisfies Meta<typeof Score>;
 

@@ -1,9 +1,9 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import React from "react";
 
-import "@/styles/globals.css";
+import "@/app/_styles/globals.css";
 
-import { ThemeProvider } from "./../src/components/provider/theme-provider";
+import { ThemeProvider } from "./../src/app/_providers/theme-provider";
 
 export const globalTypes: Preview["globalTypes"] = {
   theme: {

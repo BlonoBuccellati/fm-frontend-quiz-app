@@ -3,9 +3,9 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { IconMoon, IconSun } from "@/assets";
+import { IconMoon, IconSun } from "@/shared/assets";
 
-import { Switch } from "./ui/switch";
+import { Switch } from "./switch";
 
 type Props = {
   icon: React.FC<React.SVGProps<SVGElement>>;

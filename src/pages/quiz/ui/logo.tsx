@@ -1,7 +1,7 @@
-import { IconAccessibility } from "@/assets";
-import { cn } from "@/lib/utils";
+import { IconAccessibility } from "@/shared/assets";
+import { cn } from "@/shared/lib/utils";
 
-import IconContainer from "./ui/icon-container";
+import IconContainer from "../../../shared/ui/elements/container/icon-container";
 
 const Logo = ({ className }: { className?: string }) => {
   return (

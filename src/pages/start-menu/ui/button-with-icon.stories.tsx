@@ -1,6 +1,11 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { IconAccessibility, IconCss, IconHtml, IconJavascript } from "@/assets";
+import {
+  IconAccessibility,
+  IconCss,
+  IconHtml,
+  IconJavascript,
+} from "@/shared/assets";
 
 import ButtonWithIcon from "./button-with-icon";
 

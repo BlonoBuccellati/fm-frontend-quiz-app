@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 
-import "@/styles/globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider";
+import "./_styles/globals.css";
+import { ThemeProvider } from "@/app/_providers/theme-provider";
 
 const rubik = Rubik({
   variable: "--font-rubik",

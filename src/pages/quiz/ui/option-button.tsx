@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
-import { Button } from "./ui/button";
-import IconContainer from "./ui/icon-container";
+import { Button } from "../../../shared/ui/elements/button/button";
+import IconContainer from "../../../shared/ui/elements/container/icon-container";
 
 type OptionButtonProps = {
   isSelected: boolean;

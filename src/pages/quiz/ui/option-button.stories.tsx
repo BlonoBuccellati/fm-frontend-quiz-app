@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { IconCorrect, IconError } from "@/assets";
+import { IconCorrect, IconError } from "@/shared/assets";
 
 import OptionButton from "./option-button";
 
 const meta = {
   component: OptionButton,
-  title: "Button/OptionButton",
+  title: "quiz/OptionButton",
   tags: ["autodocs"],
 } satisfies Meta<typeof OptionButton>;
 

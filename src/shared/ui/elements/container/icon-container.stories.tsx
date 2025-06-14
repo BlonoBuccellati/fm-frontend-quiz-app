@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { IconAccessibility } from "@/assets";
+import { IconAccessibility } from "@/shared/assets";
 
 import IconContainer from "./icon-container";
 

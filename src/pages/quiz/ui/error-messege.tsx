@@ -1,4 +1,4 @@
-import { IconError } from "@/assets";
+import { IconError } from "@/shared/assets";
 
 const ErrorMessage = () => {
   return (
