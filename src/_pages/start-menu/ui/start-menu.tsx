@@ -1,15 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
 
 import ButtonWithIcon from "@/_pages/start-menu/ui/button-with-icon";
-import {
-  IconAccessibility,
-  IconCss,
-  IconHtml,
-  IconJavascript,
-} from "@/shared/assets";
+import { useStore } from "@/app/_store";
+import { QuizWithQuestions } from "@/shared/model/quiz";
 import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
 
-const StartMenu = () => {
+const StartMenu = ({ quizzes }: { quizzes: QuizWithQuestions[] }) => {
+  // クイズをグローバルに状態管理（TODO:これ用のコンテナを用意したい）
+  const { setQuizzes } = useStore();
+  useEffect(() => {
+    setQuizzes(quizzes);
+  }, [setQuizzes, quizzes]);
+
   return (
     <div className="space-y-200">
       <div className="flex justify-between px-100 py-200">
@@ -25,32 +30,22 @@ const StartMenu = () => {
       <main className="px-300 py-400">
         {/* ボタンリスト */}
         <div className="space-y-200">
-          <Link href="quiz">
-            <ButtonWithIcon
-              title="HTML"
-              icon={IconHtml}
-              className="w-full"
-              iconBgColor="html"
-            />
-          </Link>
-          <ButtonWithIcon
-            title="CSS"
-            icon={IconCss}
-            className="w-full"
-            iconBgColor="css"
-          />
-          <ButtonWithIcon
-            title="Javascript"
-            icon={IconJavascript}
-            className="w-full"
-            iconBgColor="javaScript"
-          />
-          <ButtonWithIcon
-            title="Accessibility"
-            icon={IconAccessibility}
-            className="w-full"
-            iconBgColor="accessibility"
-          />
+          {quizzes.map((quiz) => (
+            <Link href="quiz" key={quiz.id}>
+              <ButtonWithIcon
+                title={quiz.title}
+                icon={quiz.icon}
+                className="w-full"
+                iconBgColor={
+                  quiz.bgIconColor as
+                    | "html"
+                    | "css"
+                    | "javaScript"
+                    | "accessibility"
+                }
+              />
+            </Link>
+          ))}
         </div>
       </main>
     </div>

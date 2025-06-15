@@ -44,3 +44,9 @@ design
 
 *storybook.log
 storybook-static
+
+/app/generated/prisma
+
+/app/generated/prisma
+
+/src/generated/prisma

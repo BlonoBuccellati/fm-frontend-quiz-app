@@ -1,4 +1,5 @@
 import { VariantProps } from "class-variance-authority";
+import Image from "next/image";
 
 import { cn } from "../../../shared/lib/utils";
 import { Button } from "../../../shared/ui/elements/button/button";
@@ -9,7 +10,7 @@ import IconContainer, {
 type ButtonWithIconProps = {
   title: string;
   className?: string;
-  icon: React.FC<React.SVGProps<SVGElement>>;
+  icon: React.FC<React.SVGProps<SVGElement>> | string;
 };
 const ButtonWithIcon = ({
   className,
@@ -23,7 +24,11 @@ const ButtonWithIcon = ({
       className={cn("flex items-center space-x-200", className)}
     >
       <IconContainer className={cn(iconContainerVariants({ iconBgColor }))}>
-        <Icon className="size-[80%]" />
+        {typeof Icon === "string" ? (
+          <Image src={Icon} className="" alt="" width={100} height={100} />
+        ) : (
+          <Icon className="size-[80%]" />
+        )}
       </IconContainer>
       <span className="block">{title}</span>
     </Button>
