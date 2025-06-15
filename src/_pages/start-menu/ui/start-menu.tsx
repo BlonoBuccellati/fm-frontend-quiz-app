@@ -1,4 +1,6 @@
-import ButtonWithIcon from "@/pages/start-menu/ui/button-with-icon";
+import Link from "next/link";
+
+import ButtonWithIcon from "@/_pages/start-menu/ui/button-with-icon";
 import {
   IconAccessibility,
   IconCss,
@@ -23,12 +25,14 @@ const StartMenu = () => {
       <main className="px-300 py-400">
         {/* ボタンリスト */}
         <div className="space-y-200">
-          <ButtonWithIcon
-            title="HTML"
-            icon={IconHtml}
-            className="w-full"
-            iconBgColor="html"
-          />
+          <Link href="quiz">
+            <ButtonWithIcon
+              title="HTML"
+              icon={IconHtml}
+              className="w-full"
+              iconBgColor="html"
+            />
+          </Link>
           <ButtonWithIcon
             title="CSS"
             icon={IconCss}
