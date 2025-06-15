@@ -1,8 +1,8 @@
 import prisma from "@/shared/lib/prisma";
 
-import { QuizWithQuestions } from "../model/quiz";
+import { QuizWithQuestionModel } from "../model/quiz";
 
-export async function getAllQuiz(): Promise<QuizWithQuestions[]> {
+export async function getAllQuiz(): Promise<QuizWithQuestionModel[]> {
   const quizzes = await prisma.quiz.findMany({
     include: {
       questions: true,

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
+import { use } from "react";
 
-import "./_styles/globals.css";
 import { ThemeProvider } from "@/app/_providers/theme-provider";
+import { getAllQuiz } from "@/shared/api/getAllQuiz";
+import "./_styles/globals.css";
+
+import ClientWrapper from "./_store/client-wrapper";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -28,6 +32,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const quizzes = use(getAllQuiz());
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${rubik.variable} ${rubikItalic.variable} antialiased`}>
@@ -37,7 +42,7 @@ export default function RootLayout({
           enableSystem
           // disableTransitionOnChange
         >
-          {children}
+          <ClientWrapper quizzes={quizzes}>{children}</ClientWrapper>
         </ThemeProvider>
       </body>
     </html>

@@ -16,7 +16,7 @@ type OptionButtonProps = {
 const OptionButton = ({
   option,
   no,
-  isSelected,
+  isSelected = false,
   onClick,
   className,
   icon: IconAnswer,
@@ -25,7 +25,7 @@ const OptionButton = ({
     <Button
       variant="withIcon"
       className={cn(
-        "flex items-center justify-between",
+        "flex items-center justify-between hover:ring-3 hover:ring-purple-600 hover:ring-inset",
         className,
         isSelected && "ring-3 ring-purple-600 ring-inset",
       )}
