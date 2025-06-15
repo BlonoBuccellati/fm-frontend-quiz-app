@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
-import ButtonWithIcon from "@/_pages/start-menu/ui/button-with-icon";
 import { useStore } from "@/app/_store";
+import ButtonWithIcon from "@/screens/start-menu/ui/button-with-icon";
 import { QuizWithQuestions } from "@/shared/model/quiz";
 import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
 

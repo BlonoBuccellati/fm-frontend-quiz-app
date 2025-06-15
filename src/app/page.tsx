@@ -1,6 +1,6 @@
 import { use } from "react";
 
-import { StartMenu } from "@/_pages/start-menu";
+import { StartMenu } from "@/screens/start-menu";
 import { getAllQuiz } from "@/shared/api/getAllQuiz";
 
 export default function Home() {

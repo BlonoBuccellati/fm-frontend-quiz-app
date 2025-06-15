@@ -5,7 +5,7 @@
 ## 使用するLayer
 
 - app
-- pages
+- pages(screens)
 - shared
 
 ## 不採用の考え
@@ -49,12 +49,13 @@
 📁 \_styles— グローバルスタイル
 📁 entrypoint— アプリケーションコードへのエントリポイント、フレームワーク固有（app routerなので不要）
 
-# pagesフォルダ
+# pages(screens)フォルダ
 
 ---
 
-## pagesフォルダの説明
+## pages(screens)フォルダの説明
 
+- 名前はpagesだとルーティング対象になってしまうため、screensとする。
 - 最初はここから作成し、再利用されるとわかったら、sharedに移行する。
 - 基本的に１画面、１スライスで構成する
 
