@@ -2,10 +2,11 @@ import { VariantProps } from "class-variance-authority";
 
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/elements/button/button";
-
-import IconContainer, {
+import {
+  IconContainer,
   iconContainerVariants,
-} from "@/shared/ui/elements/container/icon-container";
+  IconImage,
+} from "@/shared/ui/elements/icon/icon-container";
 
 type ButtonWithIconProps = {
   title: string;
@@ -20,12 +21,11 @@ const ButtonWithIcon = ({
 }: ButtonWithIconProps & VariantProps<typeof iconContainerVariants>) => {
   return (
     <Button variant="withIcon" className={cn("flex items-center", className)}>
-      <IconContainer
-        iconSrc={iconSrc}
-        iconBgColor={iconBgColor}
-        imageAlt="genre of quiz"
-      />
-      <span className="block">{title}</span>
+      <IconContainer iconBgColor={iconBgColor}>
+        <IconImage iconSrc={iconSrc} imageAlt={`${title} image`} />
+      </IconContainer>
+      {/* button title */}
+      <p>{title}</p>
     </Button>
   );
 };

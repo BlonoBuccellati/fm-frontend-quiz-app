@@ -4,8 +4,8 @@ import { QuizPage } from "@/screens/quiz";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ title: string }>;
 }) {
-  const { id } = await params;
-  return <QuizPage id={id} />;
+  const { title } = await params;
+  return <QuizPage title={title} />;
 }

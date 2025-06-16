@@ -1,12 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import {
-  IconAccessibility,
-  IconCss,
-  IconHtml,
-  IconJavascript,
-} from "@/shared/assets";
-
 import ButtonWithIcon from "./button-with-icon";
 
 const meta = {
@@ -22,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const HTMLButton: Story = {
   args: {
     title: "HTML",
-    icon: IconHtml,
+    iconSrc: "/assets/images/icon-html.svg",
   },
   render: ({ ...props }) => (
     <div>
@@ -33,7 +26,7 @@ export const HTMLButton: Story = {
 export const CSSButton: Story = {
   args: {
     title: "CSS",
-    icon: IconCss,
+    iconSrc: "/public/assets/images/icon-css.svg",
     iconBgColor: "css",
   },
   render: ({ ...props }) => (
@@ -45,7 +38,7 @@ export const CSSButton: Story = {
 export const JSButton: Story = {
   args: {
     title: "Javascript",
-    icon: IconJavascript,
+    iconSrc: "/public/assets/images/icon-js.svg",
     iconBgColor: "javaScript",
   },
   render: ({ ...props }) => (
@@ -57,7 +50,7 @@ export const JSButton: Story = {
 export const AccessibilityButton: Story = {
   args: {
     title: "Accessibility",
-    icon: IconAccessibility,
+    iconSrc: "/public/assets/images/icon-accessibility.svg",
     iconBgColor: "accessibility",
   },
   render: ({ ...props }) => (

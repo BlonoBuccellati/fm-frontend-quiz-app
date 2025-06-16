@@ -6,17 +6,18 @@ import { useStore } from "@/app/_store";
 import ButtonWithIcon from "@/screens/start-menu/ui/button-with-icon";
 import { cn } from "@/shared/lib/utils";
 import { QuizWithQuestionModel } from "@/shared/model/quiz";
-import GlobalHeader from "@/shared/ui/layouts/global-header";
+import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
+import { HeaderContainer } from "@/shared/ui/layouts/header-container";
 
 const Title = () => {
   return (
-    <header className="space-y-200">
+    <div className="space-y-200">
       <h1 className="typo-2-light space-y-100">
         <span className="block">Welcome to the</span>
         <span className="typo-2 block">Frontend Quiz!</span>
       </h1>
       <p className="typo-5-italic">Pick a subject to get started.</p>
-    </header>
+    </div>
   );
 };
 
@@ -28,7 +29,7 @@ const ButtonList = ({ quizzes, className }: ButtonListProps) => {
   return (
     <div className={cn("space-y-sm-200-to-md-300", className)}>
       {quizzes.map((quiz) => (
-        <Link href={`quiz/${quiz.id}`} key={quiz.id} className="block">
+        <Link href={`quiz/${quiz.title}`} key={quiz.id} className="block">
           <ButtonWithIcon
             title={quiz.title}
             iconSrc={quiz.icon}
@@ -51,7 +52,9 @@ const StartMenu = () => {
   const { quizzes } = useStore();
   return (
     <div className="space-y-200">
-      <GlobalHeader />
+      <HeaderContainer className="flex flex-row-reverse">
+        <ThemeSwitch />
+      </HeaderContainer>
       <main className="desktop:flex desktop:space-x-1600 desktop:space-y-0 space-y-800">
         <Title />
         <ButtonList quizzes={quizzes} className="flex-[1]" />
