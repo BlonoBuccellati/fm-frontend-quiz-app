@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 import { IconMoon, IconSun } from "@/shared/assets";
+import { cn } from "@/shared/lib/utils";
 
 import { Switch } from "./switch";
 
@@ -19,7 +20,13 @@ export function ThemeButton({ icon: Icon, isDark, onClick }: Props) {
       className="hover:cursor-pointer"
       aria-pressed={isDark}
     >
-      <Icon className={isDark ? "text-white" : "text-gray-500"} />
+      {/* svgファイルのheightとwidthを100%にしないといけない。webpackで設定可能？ */}
+      <Icon
+        className={cn(
+          "size-sm-200-to-md-300",
+          isDark ? "text-white" : "text-gray-500",
+        )}
+      />
     </button>
   );
 }
@@ -38,14 +45,14 @@ const ThemeSwitch = () => {
   const isDark = theme === "dark";
 
   return (
-    <div className="flex items-center space-x-200">
+    <div className="space-x-sm-100-to-md-200 flex items-center">
       <ThemeButton
         icon={IconSun}
         onClick={() => setTheme("light")}
         isDark={isDark}
       />
       <Switch
-        className="h-[28px] w-600 bg-purple-600 hover:cursor-pointer"
+        className="bg-purple-600 hover:cursor-pointer"
         checked={theme === "dark"}
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />

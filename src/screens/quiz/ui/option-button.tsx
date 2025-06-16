@@ -3,7 +3,8 @@
 import { cn } from "@/shared/lib/utils";
 
 import { Button } from "../../../shared/ui/elements/button/button";
-import IconContainer from "../../../shared/ui/elements/container/icon-container";
+
+import IconContainer from "@/shared/ui/elements/container/icon-container";
 
 type OptionButtonProps = {
   isSelected: boolean;
@@ -36,14 +37,14 @@ const OptionButton = ({
     >
       <div className="flex items-center space-x-200">
         <IconContainer
+          optionNo={no}
+          imageAlt="answer option"
           className={cn(
             "bg-grey-50 dark:text-grey-500",
             isSelected && "bg-purple-600 text-white dark:text-white",
           )}
-        >
-          {no}
-        </IconContainer>
-        <div className="typo-4">{option}</div>
+        />
+        <div className="typo-4 text-left">{option}</div>
       </div>
       {IconAnswer && <IconAnswer />}
     </Button>

@@ -4,48 +4,60 @@ import Link from "next/link";
 
 import { useStore } from "@/app/_store";
 import ButtonWithIcon from "@/screens/start-menu/ui/button-with-icon";
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
+import { cn } from "@/shared/lib/utils";
+import { QuizWithQuestionModel } from "@/shared/model/quiz";
+import GlobalHeader from "@/shared/ui/layouts/global-header";
+
+const Title = () => {
+  return (
+    <header className="space-y-200">
+      <h1 className="typo-2-light space-y-100">
+        <span className="block">Welcome to the</span>
+        <span className="typo-2 block">Frontend Quiz!</span>
+      </h1>
+      <p className="typo-5-italic">Pick a subject to get started.</p>
+    </header>
+  );
+};
+
+type ButtonListProps = {
+  quizzes: QuizWithQuestionModel[];
+  className?: string;
+};
+const ButtonList = ({ quizzes, className }: ButtonListProps) => {
+  return (
+    <div className={cn("space-y-sm-200-to-md-300", className)}>
+      {quizzes.map((quiz) => (
+        <Link href={`quiz/${quiz.id}`} key={quiz.id} className="block">
+          <ButtonWithIcon
+            title={quiz.title}
+            iconSrc={quiz.icon}
+            className="w-full"
+            iconBgColor={
+              quiz.bgIconColor as
+                | "html"
+                | "css"
+                | "javaScript"
+                | "accessibility"
+            }
+          />
+        </Link>
+      ))}
+    </div>
+  );
+};
 
 const StartMenu = () => {
   const { quizzes } = useStore();
   return (
     <div className="space-y-200">
-      <div className="flex justify-between px-100 py-200">
-        <div className="" />
-        <ThemeSwitch />
-      </div>
-      <header>
-        <h1 className="typo-2-light">
-          Welcome to the <span className="typo-2">Frontend Quiz</span>
-        </h1>
-        <p className="typo-5-italic">Pick a subject to get started.</p>
-      </header>
-      <main className="px-300 py-400">
-        {/* ボタンリスト */}
-        <div className="space-y-200">
-          {quizzes.map((quiz) => {
-            console.log(`quiz/${quiz.id}`);
-            return (
-              <Link href={`quiz/${quiz.id}`} key={quiz.id}>
-                <ButtonWithIcon
-                  title={quiz.title}
-                  icon={quiz.icon}
-                  className="w-full"
-                  iconBgColor={
-                    quiz.bgIconColor as
-                      | "html"
-                      | "css"
-                      | "javaScript"
-                      | "accessibility"
-                  }
-                />
-              </Link>
-            );
-          })}
-        </div>
+      <GlobalHeader />
+      <main className="desktop:flex desktop:space-x-1600 desktop:space-y-0 space-y-800">
+        <Title />
+        <ButtonList quizzes={quizzes} className="flex-[1]" />
       </main>
     </div>
   );
 };
 
-export default StartMenu;
+export { StartMenu };

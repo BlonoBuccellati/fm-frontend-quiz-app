@@ -1,7 +1,6 @@
 /* フォント */
 @theme inline {
   --font-rubik: var(--font-rubik);
-  --font-rubik-italic: var(--font-rubik-italic);
 }
 
 /* カラー */
@@ -52,6 +51,7 @@
   --spacing-400: 2rem;
   --spacing-500: 2.5rem;
   --spacing-600: 3rem;
+  --spacing-700: 3.5rem;
   --spacing-800: 4rem;
   --spacing-1000: 5rem;
   --spacing-1200: 6rem;
@@ -62,10 +62,17 @@
   --spacing-2200: 11rem;
   --spacing-2300: 11.5rem;
 
-  --spacing-clamp-100-to-200: clamp(0.5rem, 0.023rem + 2.04vw, 1rem);
-  --spacing-clamp-200-to-300: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
-  --spacing-clamp-200-to-400: clamp(1rem, 0.046rem + 4.07vw, 2rem);
-  --spacing-clamp-600-to-800: clamp(3rem, 2.046rem + 4.07vw, 4rem);
+  --spacing-sm-100-to-md-200: clamp(0.5rem, 0.023rem + 2.04vw, 1rem);
+  --spacing-sm-200-to-md-300: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
+  --spacing-sm-200-to-md-400: clamp(1rem, 0.046rem + 4.07vw, 2rem);
+  --spacing-sm-200-to-md-700: clamp(1rem, -1.385rem + 10.18vw, 3.5rem);
+  --spacing-sm-400-to-md-600: clamp(2rem, 1.046rem + 4.07vw, 3rem);
+  --spacing-sm-500-to-md-700: clamp(2.5rem, 1.546rem + 4.07vw, 3.5rem);
+  --spacing-sm-600-to-md-800: clamp(3rem, 2.046rem + 4.07vw, 4rem);
+
+  --spacing-md-200-to-lg-300: clamp(1rem, 0.429rem + 1.19vw, 1.5rem);
+
+
 }
 
 @theme {

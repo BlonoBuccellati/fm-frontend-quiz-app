@@ -1,7 +1,8 @@
 @utility typo-1 {
   font-family: var(--font-rubik);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(5.5rem, -0.174rem + 19.11vw, 9rem); /* mobile -> tablet */
+  font-size: clamp(5.5rem, -0.174rem + 19.11vw, 9rem);
+  /* mobile -> tablet */
   line-height: 100%;
   letter-spacing: 0;
 }
@@ -9,14 +10,17 @@
 @utility typo-2 {
   font-family: var(--font-rubik);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(2.5rem, 0.068rem + 8.19vw, 4rem); /* mobile -> tablet */
+  font-size: clamp(2.5rem, 0.068rem + 8.19vw, 4rem);
+  /* mobile -> tablet */
   line-height: 100%;
   letter-spacing: 0;
 }
+
 @utility typo-2-light {
   font-family: var(--font-rubik);
-  font-weight: var(--font-weight-right);
-  font-size: clamp(2.5rem, 0.068rem + 8.19vw, 4rem); /* mobile -> tablet */
+  font-weight: var(--font-weight-light);
+  font-size: clamp(2.5rem, 0.068rem + 8.19vw, 4rem);
+  /* mobile -> tablet */
   line-height: 100%;
   letter-spacing: 0;
 }
@@ -24,7 +28,8 @@
 @utility typo-3 {
   font-family: var(--font-rubik);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(1.25rem, -0.371rem + 5.46vw, 2.25rem); /* mobile -> tablet */
+  font-size: clamp(1.25rem, -0.371rem + 5.46vw, 2.25rem);
+  /* mobile -> tablet */
   line-height: 120%;
   letter-spacing: 0;
 }
@@ -32,7 +37,8 @@
 @utility typo-4 {
   font-family: var(--font-rubik);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(1.125rem, 0.112rem + 3.41vw, 1.75rem); /* mobile -> tablet */
+  font-size: clamp(1.125rem, 0.112rem + 3.41vw, 1.75rem);
+  /* mobile -> tablet */
   line-height: 100%;
   letter-spacing: 0;
 }
@@ -46,16 +52,19 @@
 }
 
 @utility typo-5-italic {
-  font-family: var(--font-rubik-italic);
+  font-family: var(--font-rubik);
   font-weight: var(--font-weight-regular);
+  font-style: italic;
   font-size: 15px;
   line-height: 150%;
   letter-spacing: 0;
 }
 
 @utility typo-6-italic {
-  font-family: var(--font-rubik-italic);
+  font-family: var(--font-rubik);
   font-weight: var(--font-weight-regular);
+  font-style: italic;
+
   font-size: 20px;
   line-height: 150%;
   letter-spacing: 0;

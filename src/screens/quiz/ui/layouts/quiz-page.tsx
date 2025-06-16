@@ -2,9 +2,8 @@
 import { useStore } from "@/app/_store";
 import { Button } from "@/shared/ui/elements/button/button";
 import { Progress } from "@/shared/ui/elements/progress/progress";
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
+import GlobalHeader from "@/shared/ui/layouts/global-header";
 
-import Logo from "../logo";
 import OptionButton from "../option-button";
 
 interface QuizPageProps {
@@ -30,25 +29,20 @@ const QuizPage = ({ id }: QuizPageProps) => {
   return (
     <div>
       {/* header */}
-      <div className="desktop:max-w-[1160px] mx-auto flex max-w-[640px] justify-between px-300 py-200">
-        <Logo
-          title={quiz.title}
-          icon={quiz.icon}
-          iconBgColor={
-            quiz.bgIconColor as "html" | "css" | "javaScript" | "accessibility"
-          }
-        />
-        <ThemeSwitch />
-      </div>
+      <GlobalHeader
+        title={quiz.title}
+        icon={quiz.icon}
+        bgIconColor={quiz.bgIconColor}
+      />
       {/* content */}
-      <div className="desktop:flex desktop:max-w-[1160px] desktop:space-x-1600 mx-auto max-w-[640px] px-300 pt-400">
+      <div className="desktop:flex desktop:space-x-1600 mx-auto pt-400">
         <div>
           {/* title */}
           <div className="space-y-200">
-            <p className="typo-5-italic text-grey-500">
+            <p className="typo-5-italic text-grey-500 dark:text-blue-300">
               Question {currentQuestionNumber} of {questions["length"]}
             </p>
-            <h1 className="typo-3 text-blue-900">{currentQuestion.question}</h1>
+            <h1 className="typo-3">{currentQuestion.question}</h1>
           </div>
           <Progress
             className="desktop:mt-2300 mt-400 mb-500 w-full"
@@ -56,7 +50,7 @@ const QuizPage = ({ id }: QuizPageProps) => {
           />
         </div>
         {/* answer */}
-        <div className="space-y-300">
+        <div className="space-y-sm-200-to-md-300">
           {currentQuestionOptions.map((option, num) => (
             // TODO:buttonの状態管理を行う。
             <OptionButton
@@ -77,4 +71,4 @@ const QuizPage = ({ id }: QuizPageProps) => {
   );
 };
 
-export default QuizPage;
+export { QuizPage };

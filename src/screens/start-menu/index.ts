@@ -1,3 +1,1 @@
-import StartMenu from "./ui/start-menu";
-
-export { StartMenu };
+export { StartMenu } from "./ui/start-menu";

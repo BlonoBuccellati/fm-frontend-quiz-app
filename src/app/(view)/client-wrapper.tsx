@@ -4,7 +4,7 @@ import { PropsWithChildren, useEffect } from "react";
 
 import { QuizWithQuestionModel } from "@/shared/model/quiz";
 
-import { useStore } from ".";
+import { useStore } from "../_store";
 
 type ClientWrapperProps = {
   quizzes: QuizWithQuestionModel[];
@@ -13,7 +13,6 @@ const ClientWrapper = ({
   quizzes,
   children,
 }: PropsWithChildren<ClientWrapperProps>) => {
-  // クイズをグローバルに状態管理（TODO:これ用のコンテナを用意したい）
   const { setQuizzes } = useStore();
   useEffect(() => {
     setQuizzes(quizzes);

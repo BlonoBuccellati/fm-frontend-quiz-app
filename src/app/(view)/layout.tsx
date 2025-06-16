@@ -4,22 +4,15 @@ import { use } from "react";
 
 import { ThemeProvider } from "@/app/_providers/theme-provider";
 import { getAllQuiz } from "@/shared/api/getAllQuiz";
-import "./_styles/globals.css";
+import "@/app/_styles/globals.css";
 
-import ClientWrapper from "./_store/client-wrapper";
+import ClientWrapper from "./client-wrapper";
 
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin"],
-  style: "normal",
+  style: ["normal", "italic"],
   weight: ["300", "400", "500"],
-});
-
-const rubikItalic = Rubik({
-  variable: "--font-rubik-italic",
-  subsets: ["latin"],
-  style: "italic",
-  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -35,14 +28,18 @@ export default function RootLayout({
   const quizzes = use(getAllQuiz());
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${rubik.variable} ${rubikItalic.variable} antialiased`}>
+      <body className={`${rubik.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           // disableTransitionOnChange
         >
-          <ClientWrapper quizzes={quizzes}>{children}</ClientWrapper>
+          <ClientWrapper quizzes={quizzes}>
+            <div className="desktop:max-w-[1160px] mx-auto max-w-[640px] px-300 py-400">
+              {children}
+            </div>
+          </ClientWrapper>
         </ThemeProvider>
       </body>
     </html>
