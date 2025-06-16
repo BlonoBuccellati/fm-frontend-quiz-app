@@ -1,8 +1,11 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 import { Button } from "@/shared/ui/elements/button/button";
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
-import { HeaderContainer } from "@/shared/ui/layouts/header-container";
 
 import ScoreCard from "../score-card";
+
+import QuizHeader from "./quiz-header";
 
 const Title = () => {
   return (
@@ -20,13 +23,12 @@ type ScorePageProps = {
 };
 
 const ScorePage = ({ renderLogo, score, total }: ScorePageProps) => {
+  const router = useRouter();
+  const handlerClick = () => router.back();
   return (
     <div>
       {/* header */}
-      <HeaderContainer>
-        {renderLogo()}
-        <ThemeSwitch />
-      </HeaderContainer>
+      <QuizHeader renderLogo={renderLogo} />
       <main className="desktop:flex desktop:space-x-1600 mx-auto space-y-30 pt-400">
         <Title />
         <div className="desktop:flex-[1] desktop:mt-0 mt-sm-500-to-md-800 space-y-sm-200-to-md-400">
@@ -36,7 +38,10 @@ const ScorePage = ({ renderLogo, score, total }: ScorePageProps) => {
             renderLogo={renderLogo}
             className="mx-auto w-full"
           />
-          <Button className="w-full">Play Again</Button>
+
+          <Button className="w-full" onClick={handlerClick}>
+            Play Again
+          </Button>
         </div>
       </main>
     </div>

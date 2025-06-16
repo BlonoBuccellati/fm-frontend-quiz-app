@@ -6,13 +6,12 @@ import { IconCorrect, IconError } from "@/shared/assets";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/elements/button/button";
 import { Progress } from "@/shared/ui/elements/progress/progress";
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
-import { HeaderContainer } from "@/shared/ui/layouts/header-container";
 
 import ErrorMessage from "../error-messege";
 import Logo from "../logo";
 import OptionButton from "../option-button";
 
+import QuizHeader from "./quiz-header";
 import ScorePage from "./score-page";
 
 interface QuizPageProps {
@@ -73,16 +72,13 @@ const QuizPage = ({ title }: QuizPageProps) => {
       />
     );
   };
-  if (!finish) {
+  if (finish) {
     return <ScorePage score={3} total={10} renderLogo={renderLogo} />;
   }
   return (
     <div>
       {/* header */}
-      <HeaderContainer>
-        {renderLogo()}
-        <ThemeSwitch />
-      </HeaderContainer>
+      <QuizHeader renderLogo={renderLogo} />
       {/* content */}
       <main className="desktop:flex desktop:space-x-1600 mx-auto pt-400">
         <div>

@@ -18,6 +18,7 @@ const rubik = Rubik({
 export const metadata: Metadata = {
   title: "Frontend Mentor | Frontend quiz app",
   description: "Frontend quiz app",
+  icons: "favicon-32x32.png",
 };
 
 export default function RootLayout({

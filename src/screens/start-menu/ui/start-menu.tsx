@@ -49,12 +49,14 @@ const ButtonList = ({ quizzes, className }: ButtonListProps) => {
 };
 
 const StartMenu = () => {
+  // TODO:SWRやreactQuery でフェッチでいいのでは？
   const { quizzes } = useStore();
   return (
     <div className="space-y-200">
       <HeaderContainer className="flex flex-row-reverse">
         <ThemeSwitch />
       </HeaderContainer>
+      {/* TODO:ここのスタイルは共通化できそう */}
       <main className="desktop:flex desktop:space-x-1600 desktop:space-y-0 space-y-800">
         <Title />
         <ButtonList quizzes={quizzes} className="flex-[1]" />
