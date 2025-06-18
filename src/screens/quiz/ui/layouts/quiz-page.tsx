@@ -2,12 +2,12 @@
 
 import { ReactElement } from "react";
 
-import { IconCorrect, IconError } from "@/shared/assets";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button/button";
 import Main from "@/shared/ui/main";
 import { Progress } from "@/shared/ui/progress/progress";
 
+import { getOptionButtonState } from "../../model/quiz";
 import { QuestionProps } from "../../model/useQuesiton";
 import ErrorMessage from "../error-messege";
 import OptionButton from "../option-button";
@@ -40,49 +40,35 @@ const OptionButtonList = ({
   events,
   questionState,
 }: QuestionProps) => {
-  const getIcon = (option: string) => {
-    console.log(option);
-    // 押したもの
-    return questionState.isCorrect ? IconCorrect : IconError;
-  };
   return (
     <>
-      {currentQuestion.options.map((option, num) => {
-        const shouldChangeColor =
-          questionState.submitted && questionState.selectedOption === option;
-        const icon = () => {
-          if (questionState.submitted) {
-            return questionState.selectedOption === option ||
-              questionState.isCorrect
-              ? getIcon(option)
-              : undefined;
-          }
-          return undefined;
-        };
+      {currentQuestion.options.map((option, idx) => {
+        // これをコンテナに持っていく。
+        const optionState = getOptionButtonState(
+          questionState,
+          option,
+          currentQuestion.answer,
+          idx,
+        );
         return (
-          // TODO:buttonの状態管理を行う。
           <OptionButton
-            isSelected={questionState.selectedOption === option}
+            isSelected={optionState.isSelected}
             disabled={questionState.submitted}
-            key={num}
+            key={idx}
             option={option}
-            no={(num + 1).toString()}
+            no={optionState.optionText}
             onClick={() => events.handleOptionSelect(option)}
-            // 対象のボタンのみ：正解のボタン +
-            icon={icon()}
+            icon={optionState.icon}
             className={cn(
               "w-full",
-              shouldChangeColor &&
-                questionState.isCorrect &&
+              optionState.shouldChangeGreen &&
                 "ring-green-500 hover:ring-green-500 disabled:hover:ring-3",
-              shouldChangeColor &&
-                !questionState.isCorrect &&
+              optionState.shouldChangeRed &&
                 "ring-3 ring-red-500 hover:ring-red-500 disabled:hover:ring-3",
-              // submitted && "hover:cursor-not-allowed hover:bg-none",
             )}
             iconClassName={cn(
-              shouldChangeColor && questionState.isCorrect && "bg-green-500",
-              shouldChangeColor && !questionState.isCorrect && "bg-red-500",
+              optionState.shouldChangeGreen && "bg-green-500",
+              optionState.shouldChangeRed && "bg-red-500",
             )}
           />
         );
@@ -117,7 +103,7 @@ const QuizPage = ({
           />
           <Progress
             className="desktop:mt-2300 mt-400 mb-500 w-full"
-            value={question.progress}
+            value={questionState.progress}
           />
         </div>
         {/* answer */}

@@ -3,6 +3,8 @@ import { useReducer } from "react";
 import { useStore } from "@/app/_store";
 import { QuestionModel, QuizDTO } from "@/shared/api/getAllQuiz";
 
+import { calcProgress, getSelectedQuiz, getSubmitButtonLabel } from "./quiz";
+
 type QuestionFunction = {
   handleSubmit: () => void;
   handleOptionSelect: (option: string) => void;
@@ -15,7 +17,7 @@ type CurrentQuestion = Omit<QuestionModel, "id" | "quizId"> & {
 };
 
 // State の形を定義
-type QuestionState = {
+export type QuestionState = {
   currentQuestionId: number;
   selectedOption?: string;
   submitted: boolean;
@@ -23,14 +25,18 @@ type QuestionState = {
   isCorrect?: boolean;
   finish: boolean;
   score: number;
+  progress: number;
 };
 type Action =
-  | { type: "optionSelect"; payload: string }
-  | { type: "submit" }
-  | { type: "next" }
-  | { type: "noSelectedError"; payload: boolean }
-  | { type: "finish" }
-  | { type: "correct"; payload: { isCorrect: boolean; updatedScore: number } };
+  | { type: "optionSelect"; payload: { selectedOption: string } }
+  | {
+      type: "submit";
+      payload: {
+        isLastQuestion: boolean;
+        isCorrect: boolean;
+        progress: number;
+      };
+    };
 
 const initialState: QuestionState = {
   currentQuestionId: 0,
@@ -40,49 +46,52 @@ const initialState: QuestionState = {
   isCorrect: undefined,
   finish: false,
   score: 0,
+  progress: 0,
 };
 const reducer = (state: QuestionState, action: Action): QuestionState => {
+  // ビジネスロジック
+  const isNotSelected = state.selectedOption ? false : true;
   switch (action.type) {
     case "optionSelect":
-      console.log(action.payload);
+      console.log(isNotSelected);
       return {
         ...state,
-        selectedOption: action.payload,
+        selectedOption: action.payload.selectedOption,
+        noSelectedError: false,
       };
     case "submit":
-      // プログレスを更新->派生値は外で計算する。
-      // 派生値：最後の問題かどうかは外で計算する。
+      if (!state.selectedOption) {
+        return {
+          ...state,
+          noSelectedError: true,
+        };
+      }
+      // 選択済みで、submit時なら、submitする。
+      if (!state.submitted) {
+        return {
+          ...state,
+          submitted: true,
+          isCorrect: action.payload.isCorrect,
+          progress: action.payload.progress,
+        };
+      }
+      // 最後の問題なら
+      if (action.payload.isLastQuestion) {
+        return {
+          ...state,
+          finish: action.payload.isLastQuestion,
+        };
+      }
+      // 選択済み && submit後なら
       return {
         ...state,
-        submitted: true,
-        noSelectedError: false,
-      };
-    case "correct":
-      const score = action.payload.isCorrect ? state.score + 1 : state.score;
-      return {
-        ...state,
-        isCorrect: action.payload.isCorrect,
-        score: score,
-      };
-    // ここを他の場所でやるとロジックが複雑になるため、外で行う。
-    case "noSelectedError":
-      return {
-        ...state,
-        noSelectedError: action.payload,
-      };
-    case "next":
-      return {
-        ...state,
+        noSelectedError: isNotSelected,
         currentQuestionId: state.currentQuestionId + 1,
+        score: state.isCorrect ? state.score + 1 : state.score,
+        // 初期化する
         submitted: false,
-        selectedOption: undefined,
         isCorrect: undefined,
-        noSelectedError: false,
-      };
-    case "finish":
-      return {
-        ...state,
-        finish: true,
+        selectedOption: undefined,
       };
     default:
       return state;
@@ -95,53 +104,40 @@ export type QuestionProps = {
   totalQuestions: number;
   currentQuestion: CurrentQuestion;
   buttonText: string;
-  progress: number;
 };
 export function useQuestion(title: string): QuestionProps | undefined {
   const { quizzes } = useStore();
 
   const [questionState, dispatch] = useReducer(reducer, initialState);
 
-  const selectedQuiz = quizzes.find((q) => q.title === title);
+  const selectedQuiz = getSelectedQuiz(quizzes, title);
   if (!selectedQuiz) {
     return undefined;
   }
 
-  const questions = selectedQuiz.questions;
+  const { questions } = selectedQuiz;
   const currentQuestion = questions[questionState.currentQuestionId];
   const currentQuestionOptions = currentQuestion.options;
 
   // プログレスバー
+  // Containerで行うかも。
   const totalQuestions = questions["length"];
   const currentNum = questionState.currentQuestionId + 1;
-  const progress = calcProgress(currentNum, totalQuestions);
-  // Containerで行うかも。
-  const buttonText = getButtonText(questionState.submitted);
+  const buttonText = getSubmitButtonLabel(questionState.submitted);
   const handleSubmit = () => {
-    // option が選択されているか？
-    // 選択されていなければ、エラーにする。
-    const isLastQuiz = questions["length"] === currentNum;
-    if (isLastQuiz) {
-      dispatch({ type: "finish" });
-    }
-    if (!questionState.selectedOption) {
-      dispatch({ type: "noSelectedError", payload: true });
-    }
-    if (questionState.submitted) {
-      dispatch({ type: "next" });
-    } else {
-      dispatch({ type: "submit" });
-      const isCorrect = questionState.selectedOption === currentQuestion.answer;
-      dispatch({
-        type: "correct",
-        payload: { isCorrect: isCorrect, updatedScore: questionState.score },
-      });
-    }
+    const totalQuestions = questions["length"];
+    const currentNum = questionState.currentQuestionId + 1;
+    const progress = calcProgress(currentNum, totalQuestions);
+    const isLastQuestion = questions["length"] === currentNum;
+    const isCorrect = currentQuestion.answer === questionState.selectedOption;
+    dispatch({
+      type: "submit",
+      payload: { isLastQuestion, isCorrect, progress },
+    });
   };
 
   const handlerOptionClick = (option: string) => {
-    dispatch({ type: "optionSelect", payload: option });
-    dispatch({ type: "noSelectedError", payload: false });
+    dispatch({ type: "optionSelect", payload: { selectedOption: option } });
   };
 
   return {
@@ -162,16 +158,6 @@ export function useQuestion(title: string): QuestionProps | undefined {
       answer: currentQuestion.answer, //使ってなさそう。
     },
     buttonText,
-    progress,
     questionState, //state
   };
-}
-
-// utility関数
-function calcProgress(currentNum: number, total: number) {
-  return (currentNum / total) * 100;
-}
-// utility関数
-function getButtonText(submitted: boolean) {
-  return submitted ? "Next Question" : "Submit Answer";
 }
