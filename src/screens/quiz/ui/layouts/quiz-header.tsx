@@ -1,15 +1,15 @@
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
-import { HeaderContainer } from "@/shared/ui/layouts/header-container";
+import { Header } from "@/shared/ui/header";
+import ThemeSwitch from "@/shared/ui/switch/theme-switch";
 
 type QuizHeaderProps = {
   renderLogo: () => React.ReactElement;
 };
 const QuizHeader = ({ renderLogo }: QuizHeaderProps) => {
   return (
-    <HeaderContainer>
+    <Header>
       {renderLogo()}
       <ThemeSwitch />
-    </HeaderContainer>
+    </Header>
   );
 };
 

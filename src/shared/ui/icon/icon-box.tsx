@@ -1,9 +1,10 @@
 import { cva, VariantProps } from "class-variance-authority";
 import Image from "next/image";
 
+import { IconBgColor } from "@/shared/color/types";
 import { cn } from "@/shared/lib/utils";
 
-export const iconContainerVariants = cva("", {
+export const iconBoxVariants = cva("", {
   variants: {
     iconBgColor: {
       default: "bg-grey-50",
@@ -11,24 +12,23 @@ export const iconContainerVariants = cva("", {
       css: "bg-green-100",
       javaScript: "bg-blue-50",
       accessibility: "bg-purple-100",
-    },
+    } satisfies Record<IconBgColor, string>,
   },
   defaultVariants: {
     iconBgColor: "default",
   },
 });
 
-const IconContainer = ({
+const IconBox = ({
   className,
   iconBgColor,
   ...props
-}: React.ComponentProps<"div"> &
-  VariantProps<typeof iconContainerVariants>) => {
+}: React.ComponentProps<"div"> & VariantProps<typeof iconBoxVariants>) => {
   return (
     <div
       className={cn(
         "size-sm-500-to-md-700 flex min-w-500 items-center justify-center rounded-[8px]",
-        iconContainerVariants({ iconBgColor }),
+        iconBoxVariants({ iconBgColor }),
         className,
       )}
       {...props}
@@ -72,4 +72,4 @@ const IconImage = ({ imageAlt, iconSrc, text, className }: IconImageProps) => {
   }
 };
 
-export { IconContainer, IconImage };
+export { IconBox, IconImage };

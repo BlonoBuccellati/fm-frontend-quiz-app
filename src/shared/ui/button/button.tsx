@@ -13,14 +13,14 @@ const buttonVariants = cva(
         withIcon:
           "bg-white dark:bg-blue-850 text-blue-900 dark:text-white hover:opacity-80 p-md-200-to-lg-300 space-x-sm-200-to-md-400",
       },
-      size: {
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+      notAllowedVariant: {
+        default:
+          "disabled:cursor-not-allowed disabled:hover:opacity-100 disabled:hover:ring-0",
       },
     },
     defaultVariants: {
       variant: "default",
+      notAllowedVariant: "default",
     },
   },
 );
@@ -28,7 +28,7 @@ const buttonVariants = cva(
 function Button({
   className,
   variant,
-  size,
+  notAllowedVariant,
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> &
@@ -40,7 +40,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, notAllowedVariant, className }))}
       {...props}
     />
   );

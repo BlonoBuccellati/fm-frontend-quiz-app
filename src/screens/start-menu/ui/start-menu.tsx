@@ -4,11 +4,19 @@ import Link from "next/link";
 
 import { useStore } from "@/app/_store";
 import ButtonWithIcon from "@/screens/start-menu/ui/button-with-icon";
+import { QuizWithQuestionDTO } from "@/shared/api/getAllQuiz";
 import { cn } from "@/shared/lib/utils";
-import { QuizWithQuestionModel } from "@/shared/model/quiz";
-import ThemeSwitch from "@/shared/ui/elements/switch/theme-switch";
-import { HeaderContainer } from "@/shared/ui/layouts/header-container";
+import ThemeSwitch from "@/shared/ui/switch/theme-switch";
+import { Header } from "@/shared/ui/header";
+import Main from "@/shared/ui/main";
 
+const StartMenuHeader = () => {
+  return (
+    <Header className="flex flex-row-reverse">
+      <ThemeSwitch />
+    </Header>
+  );
+};
 const Title = () => {
   return (
     <div className="space-y-200">
@@ -22,7 +30,7 @@ const Title = () => {
 };
 
 type ButtonListProps = {
-  quizzes: QuizWithQuestionModel[];
+  quizzes: QuizWithQuestionDTO[];
   className?: string;
 };
 const ButtonList = ({ quizzes, className }: ButtonListProps) => {
@@ -34,13 +42,7 @@ const ButtonList = ({ quizzes, className }: ButtonListProps) => {
             title={quiz.title}
             iconSrc={quiz.icon}
             className="w-full"
-            iconBgColor={
-              quiz.bgIconColor as
-                | "html"
-                | "css"
-                | "javaScript"
-                | "accessibility"
-            }
+            iconBgColor={quiz.bgIconColor}
           />
         </Link>
       ))}
@@ -52,15 +54,12 @@ const StartMenu = () => {
   // TODO:SWRやreactQuery でフェッチでいいのでは？
   const { quizzes } = useStore();
   return (
-    <div className="space-y-200">
-      <HeaderContainer className="flex flex-row-reverse">
-        <ThemeSwitch />
-      </HeaderContainer>
-      {/* TODO:ここのスタイルは共通化できそう */}
-      <main className="desktop:flex desktop:space-x-1600 desktop:space-y-0 space-y-800">
+    <div>
+      <StartMenuHeader />
+      <Main className="desktop:space-y-0 desktop:pt-0 space-y-800">
         <Title />
-        <ButtonList quizzes={quizzes} className="flex-[1]" />
-      </main>
+        <ButtonList quizzes={quizzes} className="desktop:flex-[1]" />
+      </Main>
     </div>
   );
 };

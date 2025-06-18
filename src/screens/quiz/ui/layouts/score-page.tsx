@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/shared/ui/elements/button/button";
+import { Button } from "@/shared/ui/button/button";
+import Main from "@/shared/ui/main";
 
 import ScoreCard from "../score-card";
 
@@ -29,21 +30,21 @@ const ScorePage = ({ renderLogo, score, total }: ScorePageProps) => {
     <div>
       {/* header */}
       <QuizHeader renderLogo={renderLogo} />
-      <main className="desktop:flex desktop:space-x-1600 mx-auto space-y-30 pt-400">
+
+      <Main className="desktop:pt-0 pt-400">
         <Title />
-        <div className="desktop:flex-[1] desktop:mt-0 mt-sm-500-to-md-800 space-y-sm-200-to-md-400">
+        <div className="desktop:mt-0 mt-sm-500-to-md-800 space-y-sm-200-to-md-400">
           <ScoreCard
             score={score}
             total={total}
             renderLogo={renderLogo}
             className="mx-auto w-full"
           />
-
           <Button className="w-full" onClick={handlerClick}>
             Play Again
           </Button>
         </div>
-      </main>
+      </Main>
     </div>
   );
 };

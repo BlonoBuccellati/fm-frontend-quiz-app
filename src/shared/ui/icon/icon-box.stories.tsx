@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { IconContainer, IconImage } from "./icon-container";
+import { IconBox, IconImage } from "./icon-box";
 
 const meta = {
-  component: IconContainer,
+  component: IconBox,
   title: "ui/IconContainer",
   tags: ["autodocs"],
-} satisfies Meta<typeof IconContainer>;
+} satisfies Meta<typeof IconBox>;
 
 export default meta;
 
@@ -17,9 +17,9 @@ export const Number: Story = {
     iconBgColor: "default",
   },
   render: ({ ...args }) => (
-    <IconContainer {...args} iconBgColor="default">
+    <IconBox {...args} iconBgColor="default">
       <IconImage imageAlt="option of question" text="A" />
-    </IconContainer>
+    </IconBox>
   ),
 };
 export const SVG: Story = {
@@ -27,11 +27,11 @@ export const SVG: Story = {
     iconBgColor: "accessibility",
   },
   render: ({ ...args }) => (
-    <IconContainer {...args}>
+    <IconBox {...args}>
       <IconImage
         imageAlt="genre of quiz"
         iconSrc="/assets/images/icon-accessibility.svg"
       />
-    </IconContainer>
+    </IconBox>
   ),
 };

@@ -1,4 +1,4 @@
-import { QuizPage } from "@/screens/quiz";
+import { QuizPageContainer } from "@/screens/quiz";
 
 // searchParamsとして送られてくるため、params.idの形式にする必要がある。
 export default async function Page({
@@ -7,5 +7,5 @@ export default async function Page({
   params: Promise<{ title: string }>;
 }) {
   const { title } = await params;
-  return <QuizPage title={title} />;
+  return <QuizPageContainer title={title} />;
 }

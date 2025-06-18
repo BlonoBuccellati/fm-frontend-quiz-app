@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-import { QuizWithQuestionModel } from "@/shared/model/quiz";
+import { QuizWithQuestionDTO } from "@/shared/api/getAllQuiz";
 
 interface QuizzesState {
-  quizzes: QuizWithQuestionModel[];
-  setQuizzes: (quizzes: QuizWithQuestionModel[]) => void;
+  quizzes: QuizWithQuestionDTO[];
+  setQuizzes: (quizzes: QuizWithQuestionDTO[]) => void;
 }
 export const useStore = create<QuizzesState>((set) => ({
   quizzes: [],

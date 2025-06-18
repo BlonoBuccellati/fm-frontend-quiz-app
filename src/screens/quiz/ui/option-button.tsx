@@ -1,12 +1,9 @@
 "use client";
 
 import { cn } from "@/shared/lib/utils";
-import {
-  IconContainer,
-  IconImage,
-} from "@/shared/ui/elements/icon/icon-container";
+import { IconBox, IconImage } from "@/shared/ui/icon/icon-box";
 
-import { Button } from "../../../shared/ui/elements/button/button";
+import { Button } from "../../../shared/ui/button/button";
 
 type OptionButtonProps = {
   isSelected: boolean;
@@ -25,7 +22,8 @@ const OptionButton = ({
   className,
   iconClassName,
   icon: IconAnswer,
-}: OptionButtonProps) => {
+  ...props
+}: React.ComponentProps<"button"> & OptionButtonProps) => {
   return (
     <Button
       variant="withIcon"
@@ -38,10 +36,11 @@ const OptionButton = ({
       role="radio"
       aria-checked={isSelected}
       onClick={onClick}
+      {...props}
     >
       {/* imageAlt="answer option" */}
       <div className="flex items-center space-x-200">
-        <IconContainer
+        <IconBox
           className={cn(
             "bg-grey-50 dark:text-grey-500 hover:dark:bg-purple-600",
             isSelected && "bg-purple-600",
@@ -56,7 +55,7 @@ const OptionButton = ({
               isSelected && "text-white",
             )}
           />
-        </IconContainer>
+        </IconBox>
         <div className="typo-4 text-left">{option}</div>
       </div>
       {IconAnswer && <IconAnswer />}

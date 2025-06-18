@@ -1,11 +1,7 @@
 import { VariantProps } from "class-variance-authority";
 
 import { cn } from "@/shared/lib/utils";
-import {
-  IconContainer,
-  iconContainerVariants,
-  IconImage,
-} from "@/shared/ui/elements/icon/icon-container";
+import { IconBox, iconBoxVariants, IconImage } from "@/shared/ui/icon/icon-box";
 
 type LogoProps = {
   title: string;
@@ -17,7 +13,7 @@ const Logo = ({
   icon,
   iconBgColor,
   className,
-}: LogoProps & VariantProps<typeof iconContainerVariants>) => {
+}: LogoProps & VariantProps<typeof iconBoxVariants>) => {
   return (
     <div
       className={cn(
@@ -25,9 +21,9 @@ const Logo = ({
         className,
       )}
     >
-      <IconContainer iconBgColor={iconBgColor}>
+      <IconBox iconBgColor={iconBgColor}>
         <IconImage imageAlt="answer option" iconSrc={icon} />
-      </IconContainer>
+      </IconBox>
 
       <h1 className="block">{title}</h1>
     </div>

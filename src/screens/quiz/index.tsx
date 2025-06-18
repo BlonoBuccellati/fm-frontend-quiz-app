@@ -1,1 +1,1 @@
-export { QuizPage } from "./ui/layouts/quiz-page";
+export { QuizPageContainer } from "./ui/layouts/quiz-page-container";
