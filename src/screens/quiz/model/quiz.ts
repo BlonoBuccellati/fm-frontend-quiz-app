@@ -4,22 +4,22 @@ import { IconCorrect, IconError } from "@/shared/assets";
 import { QuestionState } from "./useQuesiton";
 
 // utility関数
-export function calcProgress(currentNum: number, total: number) {
+function calcProgress(currentNum: number, total: number) {
   return (currentNum / total) * 100;
 }
 // utility関数
-export function getSubmitButtonLabel(submitted: boolean) {
+function getSubmitButtonLabel(submitted: boolean) {
   return submitted ? "Next Question" : "Submit Answer";
 }
 
-export function getSelectedQuiz(
+function getSelectedQuiz(
   quizzes: QuizWithQuestionDTO[],
   title: string,
 ): QuizWithQuestionDTO | undefined {
   return quizzes.find((q) => q.title === title);
 }
 
-export function getOptionButtonState(
+function getOptionButtonState(
   questionState: QuestionState,
   option: string,
   answer: string,
@@ -58,3 +58,77 @@ function numToLetter(n: number): string {
   if (n < 0 || n > 25) return "";
   return String.fromCharCode(65 + n);
 }
+
+function makeSubmitPayload(
+  state: QuestionState,
+  isCorrect: boolean,
+  isLastQuestion: boolean,
+  progress: number,
+) {
+  const isNotSelected = state.selectedOption ? false : true;
+  if (!state.selectedOption) {
+    return {
+      ...state,
+      noSelectedError: true,
+    };
+  }
+  // 選択済みで、submit時なら、submitする。
+  if (!state.submitted) {
+    return {
+      ...state,
+      submitted: true,
+      isCorrect: isCorrect,
+      progress: progress,
+    };
+  }
+  // 最後の問題なら
+  if (isLastQuestion) {
+    return {
+      ...state,
+      finish: isLastQuestion,
+    };
+  }
+  // 選択済み && submit後なら
+  return {
+    ...state,
+    noSelectedError: isNotSelected,
+    currentQuestionId: state.currentQuestionId + 1,
+    score: state.isCorrect ? state.score + 1 : state.score,
+    // 初期化する
+    submitted: false,
+    isCorrect: undefined,
+    selectedOption: undefined,
+  };
+}
+
+function getQuestionState(
+  selectedQuiz: QuizWithQuestionDTO,
+  questionState: QuestionState,
+) {
+  const { questions } = selectedQuiz;
+  const currentQuestion = questions[questionState.currentQuestionId];
+  const currentQuestionOptions = currentQuestion.options;
+  const totalQuestions = questions["length"];
+  const currentNum = questionState.currentQuestionId + 1;
+  const isLastQuestion = totalQuestions === currentNum;
+  const progress = calcProgress(currentNum, totalQuestions);
+
+  const isCorrect = currentQuestion.answer === questionState.selectedOption;
+  return {
+    currentQuestion,
+    currentQuestionOptions,
+    totalQuestions,
+    currentNum,
+    isLastQuestion,
+    progress,
+    isCorrect,
+  };
+}
+export {
+  makeSubmitPayload,
+  calcProgress,
+  getSubmitButtonLabel,
+  getSelectedQuiz,
+  getOptionButtonState,
+  getQuestionState,
+};

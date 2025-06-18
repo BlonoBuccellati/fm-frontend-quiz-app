@@ -1,5 +1,6 @@
 "use client";
 
+import { getSubmitButtonLabel } from "../../model/quiz";
 import { useQuestion } from "../../model/useQuesiton";
 import Logo from "../logo";
 
@@ -13,8 +14,8 @@ const QuizPageContainer = ({ title }: QuizPageContainerProps) => {
   const questions = useQuestion(title);
   if (!questions?.currentQuestion) return <div>データなし。</div>;
 
-  const { selectedQuiz, questionState, totalQuestions, ...question } =
-    questions;
+  const { selectedQuiz, questionState, totalQuestions } = questions;
+  const submitButtonLabel = getSubmitButtonLabel(questionState.submitted);
 
   const renderLogo = () => {
     return (
@@ -37,10 +38,8 @@ const QuizPageContainer = ({ title }: QuizPageContainerProps) => {
   return (
     <QuizPage
       renderLogo={renderLogo}
-      questionState={questionState}
-      selectedQuiz={selectedQuiz}
-      totalQuestions={totalQuestions}
-      {...question}
+      submitButtonLabel={submitButtonLabel}
+      questions={questions}
     />
   );
 };

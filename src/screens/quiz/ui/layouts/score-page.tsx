@@ -30,7 +30,6 @@ const ScorePage = ({ renderLogo, score, total }: ScorePageProps) => {
     <div>
       {/* header */}
       <QuizHeader renderLogo={renderLogo} />
-
       <Main className="desktop:pt-0 pt-400">
         <Title />
         <div className="desktop:mt-0 mt-sm-500-to-md-800 space-y-sm-200-to-md-400">

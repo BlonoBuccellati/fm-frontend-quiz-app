@@ -17,20 +17,20 @@ import QuizHeader from "./quiz-header";
 type QuestionTitleProps = {
   currentQuestionNum: number;
   totalQuestionNum: number;
-  currentQuestion: string;
+  currentQuestionTitle: string;
 };
 
 const QuestionTitle = ({
   currentQuestionNum,
   totalQuestionNum,
-  currentQuestion,
+  currentQuestionTitle,
 }: QuestionTitleProps) => {
   return (
     <div className="space-y-200">
       <p className="typo-5-italic text-grey-500 dark:text-blue-300">
         Question {currentQuestionNum} of {totalQuestionNum}
       </p>
-      <h1 className="typo-3">{currentQuestion}</h1>
+      <h1 className="typo-3">{currentQuestionTitle}</h1>
     </div>
   );
 };
@@ -43,7 +43,7 @@ const OptionButtonList = ({
   return (
     <>
       {currentQuestion.options.map((option, idx) => {
-        // これをコンテナに持っていく。
+        // これをコンテナに持っていきたい。どうやって？？
         const optionState = getOptionButtonState(
           questionState,
           option,
@@ -77,56 +77,74 @@ const OptionButtonList = ({
   );
 };
 
-const QuizPage = ({
-  renderLogo,
-  ...props
-}: QuestionProps & { renderLogo: () => ReactElement }) => {
-  const {
-    selectedQuiz,
-    events,
-    currentQuestion,
-    questionState,
-    totalQuestions,
-    ...question
-  } = { ...props };
+type QuestionSectionProps = {
+  totalQuestions: number;
+  progress: number;
+  currentQuestionTitle: string;
+  currentQuestionNum: number;
+};
+const QuestionSection = ({
+  totalQuestions,
+  progress,
+  currentQuestionTitle,
+  currentQuestionNum,
+}: QuestionSectionProps) => {
+  return (
+    <div>
+      <QuestionTitle
+        currentQuestionTitle={currentQuestionTitle}
+        currentQuestionNum={currentQuestionNum}
+        totalQuestionNum={totalQuestions}
+      />
+      <Progress
+        className="desktop:mt-2300 mt-400 mb-500 w-full"
+        value={progress}
+      />
+    </div>
+  );
+};
 
+const AnswerSection = ({
+  submitButtonLabel,
+  ...props
+}: QuestionProps & { submitButtonLabel: string }) => {
+  const { questionState, events } = { ...props };
+  return (
+    <div className="space-y-sm-200-to-md-300">
+      <OptionButtonList {...props} />
+      <Button
+        className="mb-400 w-full"
+        role="button"
+        onClick={events.handleSubmit}
+      >
+        {submitButtonLabel}
+      </Button>
+      {questionState.noSelectedError && <ErrorMessage className="mx-auto" />}
+    </div>
+  );
+};
+type QuizPageProps = {
+  renderLogo: () => ReactElement;
+  submitButtonLabel: string;
+  questions: QuestionProps;
+};
+const QuizPage = ({
+  submitButtonLabel,
+  renderLogo,
+  questions,
+}: QuizPageProps) => {
+  const {} = questions;
   return (
     <div>
       <QuizHeader renderLogo={renderLogo} />
       <Main className="desktop:pt-0 pt-400">
-        {/* left contents */}
-        <div>
-          <QuestionTitle
-            currentQuestion={currentQuestion.question}
-            currentQuestionNum={currentQuestion.questionNum}
-            totalQuestionNum={totalQuestions}
-          />
-          <Progress
-            className="desktop:mt-2300 mt-400 mb-500 w-full"
-            value={questionState.progress}
-          />
-        </div>
-        {/* answer */}
-        <div className="space-y-sm-200-to-md-300">
-          <OptionButtonList
-            currentQuestion={currentQuestion}
-            events={events}
-            selectedQuiz={selectedQuiz}
-            questionState={questionState}
-            totalQuestions={totalQuestions}
-            {...question}
-          />
-          <Button
-            className="mb-400 w-full"
-            role="button"
-            onClick={events.handleSubmit}
-          >
-            {question.buttonText}
-          </Button>
-          {questionState.noSelectedError && (
-            <ErrorMessage className="mx-auto" />
-          )}
-        </div>
+        <QuestionSection
+          totalQuestions={questions.totalQuestions}
+          progress={questions.questionState.progress}
+          currentQuestionNum={questions.currentQuestion.questionNum}
+          currentQuestionTitle={questions.currentQuestion.question}
+        />
+        <AnswerSection submitButtonLabel={submitButtonLabel} {...questions} />
       </Main>
     </div>
   );
