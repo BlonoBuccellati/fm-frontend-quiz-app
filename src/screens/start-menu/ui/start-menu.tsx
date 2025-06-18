@@ -6,9 +6,9 @@ import { useStore } from "@/app/_store";
 import ButtonWithIcon from "@/screens/start-menu/ui/button-with-icon";
 import { QuizWithQuestionDTO } from "@/shared/api/getAllQuiz";
 import { cn } from "@/shared/lib/utils";
-import ThemeSwitch from "@/shared/ui/switch/theme-switch";
 import { Header } from "@/shared/ui/header";
 import Main from "@/shared/ui/main";
+import ThemeSwitch from "@/shared/ui/switch/theme-switch";
 
 const StartMenuHeader = () => {
   return (

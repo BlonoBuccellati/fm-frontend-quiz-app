@@ -22,10 +22,7 @@ export function ThemeButton({ icon: Icon, isDark, onClick }: Props) {
     >
       {/* svgファイルのheightとwidthを100%にしないといけない。webpackで設定可能？ */}
       <Icon
-        className={cn(
-          "size-sm-200-to-md-300",
-          isDark ? "text-white" : "text-gray-500",
-        )}
+        className={cn("size-sm-200-to-md-300 text-grey-500 dark:text-white")}
       />
     </button>
   );
