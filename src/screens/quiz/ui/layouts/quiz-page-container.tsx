@@ -12,10 +12,10 @@ interface QuizPageContainerProps {
 }
 const QuizPageContainer = ({ title }: QuizPageContainerProps) => {
   const questions = useQuestion(title);
-  if (!questions?.currentQuestion) return <div>データなし。</div>;
+  if (!questions?.currentQuestion) return <div>No Data</div>;
 
   const { selectedQuiz, questionState, totalQuestions } = questions;
-  const submitButtonLabel = getSubmitButtonLabel(questionState.submitted);
+  const submitButtonLabel = getSubmitButtonLabel(questionState);
 
   const renderLogo = () => {
     return (

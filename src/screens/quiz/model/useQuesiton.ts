@@ -19,6 +19,7 @@ type QuestionState = {
   finish: boolean;
   score: number;
   progress: number;
+  isLastQuestion: boolean;
 };
 type Action =
   | { type: "optionSelect"; payload: { selectedOption: string } }
@@ -40,6 +41,7 @@ const initialState: QuestionState = {
   finish: false,
   score: 0,
   progress: 0,
+  isLastQuestion: false,
 };
 const reducer = (state: QuestionState, action: Action): QuestionState => {
   switch (action.type) {

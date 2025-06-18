@@ -8,8 +8,10 @@ function calcProgress(currentNum: number, total: number) {
   return (currentNum / total) * 100;
 }
 // utility関数
-function getSubmitButtonLabel(submitted: boolean) {
-  return submitted ? "Next Question" : "Submit Answer";
+function getSubmitButtonLabel(questionState: QuestionState) {
+  if (questionState.isLastQuestion) return "View Result";
+
+  return questionState.submitted ? "Next Question" : "Submit Answer";
 }
 
 function getSelectedQuiz(
@@ -64,7 +66,7 @@ function makeSubmitPayload(
   isCorrect: boolean,
   isLastQuestion: boolean,
   progress: number,
-) {
+): QuestionState {
   const isNotSelected = state.selectedOption ? false : true;
   if (!state.selectedOption) {
     return {
@@ -79,6 +81,7 @@ function makeSubmitPayload(
       submitted: true,
       isCorrect: isCorrect,
       progress: progress,
+      isLastQuestion: isLastQuestion,
     };
   }
   // 最後の問題なら

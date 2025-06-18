@@ -9,9 +9,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-purple-600 hover:bg-purple-100 text-white p-sm-200-to-md-400",
+          "bg-purple-600 hover:bg-[color-mix(in_srgb,white_50%,theme(colors.purple.600))] text-white p-sm-200-to-md-400",
         withIcon:
-          "bg-white dark:bg-blue-850 text-blue-900 dark:text-white hover:opacity-80 p-md-200-to-lg-300 space-x-sm-200-to-md-400",
+          "bg-white dark:bg-blue-850 text-blue-900 dark:text-white p-md-200-to-lg-300 space-x-sm-200-to-md-400",
       },
       notAllowedVariant: {
         default:

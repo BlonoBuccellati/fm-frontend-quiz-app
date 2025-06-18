@@ -27,7 +27,7 @@ const IconBox = ({
   return (
     <div
       className={cn(
-        "size-sm-500-to-md-700 flex min-w-500 items-center justify-center rounded-[8px]",
+        "size-sm-500-to-md-700 pointer-events-none flex min-w-[var(--spacing-sm-500-to-md-700)] items-center justify-center rounded-[8px]",
         iconBoxVariants({ iconBgColor }),
         className,
       )}
@@ -42,33 +42,27 @@ type IconImageProps = {
 } & ({ iconSrc: string; text?: never } | { text: string; iconSrc?: never });
 
 const IconImage = ({ imageAlt, iconSrc, text, className }: IconImageProps) => {
-  const renderImage = (iconSrc: string) => {
+  if (iconSrc) {
     return (
       <Image
         alt={imageAlt}
         src={iconSrc}
         width={40}
         height={40}
-        className={cn("w-[80%]", className)}
+        className={cn("w-[60%]", className)}
       />
     );
-  };
-  const renderWithText = (text: string) => {
+  }
+  if (text) {
     return (
       <div
-        className={cn("typo-4 text-grey-500 w-[80%] text-center", className)}
+        className={cn("typo-4 text-grey-500 text-center", className)}
         role="img"
         aria-label={imageAlt}
       >
         {text}
       </div>
     );
-  };
-  if (iconSrc) {
-    return renderImage(iconSrc);
-  }
-  if (text) {
-    return renderWithText(text);
   }
 };
 

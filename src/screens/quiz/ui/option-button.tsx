@@ -58,7 +58,7 @@ const OptionButton = ({
         </IconBox>
         <div className="typo-4 text-left">{option}</div>
       </div>
-      {IconAnswer && <IconAnswer />}
+      {IconAnswer && <IconAnswer className="min-w-500" />}
     </Button>
   );
 };
