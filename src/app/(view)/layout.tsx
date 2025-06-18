@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import { use } from "react";
+import "@/app/_styles/globals.css";
 
 import { ThemeProvider } from "@/app/_providers/theme-provider";
 import { getAllQuiz } from "@/shared/api/getAllQuiz";
-import "@/app/_styles/globals.css";
-
 import BgImageLayout from "@/shared/ui/bg-image-layout";
 
 import QuizProvider from "../_store/quiz-provider";
