@@ -24,7 +24,9 @@ const Title = () => {
         <span className="block">Welcome to the</span>
         <span className="typo-2 block">Frontend Quiz!</span>
       </h1>
-      <p className="typo-5-italic">Pick a subject to get started.</p>
+      <p className="typo-5-italic desktop:typo-6-italic">
+        Pick a subject to get started.
+      </p>
     </div>
   );
 };
