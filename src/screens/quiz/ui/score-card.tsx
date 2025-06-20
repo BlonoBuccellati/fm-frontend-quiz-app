@@ -10,7 +10,7 @@ const ScoreCard = ({ score, total, renderLogo, className }: ScoreProps) => {
   return (
     <div
       className={cn(
-        "dark:bg-blue-850 w-fit space-y-200 rounded-[12px] bg-white p-400",
+        "dark:bg-blue-850 w-fit space-y-200 rounded-[0.75rem] bg-white p-400",
         className,
       )}
     >

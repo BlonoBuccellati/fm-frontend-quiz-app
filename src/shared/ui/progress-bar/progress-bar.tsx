@@ -15,7 +15,7 @@ function ProgressBar({
       data-slot="progress"
       role="progressbar"
       className={cn(
-        "dark:bg-blue-850 h-200 w-full overflow-hidden rounded-full bg-white p-[4px]",
+        "dark:bg-blue-850 h-200 w-full overflow-hidden rounded-full bg-white p-[0.25rem]",
         className,
       )}
       {...props}

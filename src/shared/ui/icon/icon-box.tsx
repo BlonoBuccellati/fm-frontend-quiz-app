@@ -27,7 +27,7 @@ const IconBox = ({
   return (
     <div
       className={cn(
-        "size-sm-500-to-md-700 pointer-events-none flex min-w-[var(--spacing-sm-500-to-md-700)] items-center justify-center rounded-[8px]",
+        "size-sm-500-to-md-700 pointer-events-none flex min-w-[var(--spacing-sm-500-to-md-700)] items-center justify-center rounded-[0.5rem]",
         iconBoxVariants({ iconBgColor }),
         className,
       )}
