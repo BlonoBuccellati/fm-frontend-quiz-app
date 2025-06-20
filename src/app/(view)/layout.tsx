@@ -39,7 +39,7 @@ export default function RootLayout({
         >
           <QuizProvider quizzes={quizzes}>
             <BgImageLayout />
-            <div className="desktop:max-w-[1160px] mx-auto max-w-[640px] px-300 py-400">
+            <div className="desktop:max-w-[1160px] mx-auto max-w-[640px] px-300 pb-400">
               {children}
             </div>
           </QuizProvider>
