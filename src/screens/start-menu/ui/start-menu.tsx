@@ -19,7 +19,7 @@ const StartMenuHeader = () => {
 };
 const Title = () => {
   return (
-    <div className="space-y-200">
+    <div className="space-y-sm-200-to-md-600">
       <h1 className="typo-2-light space-y-100">
         <span className="block">Welcome to the</span>
         <span className="typo-2 block">Frontend Quiz!</span>
