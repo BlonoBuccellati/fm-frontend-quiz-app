@@ -32,9 +32,6 @@ const OptionButton = ({
         isSelected && "ring-3 ring-purple-600 ring-inset",
         className,
       )}
-      type="button"
-      role="radio"
-      aria-checked={isSelected}
       onClick={onClick}
       {...props}
     >

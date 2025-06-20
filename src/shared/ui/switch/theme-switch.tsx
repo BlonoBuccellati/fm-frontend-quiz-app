@@ -13,12 +13,18 @@ type Props = {
   isDark: boolean;
   onClick: () => void;
 };
-export function ThemeButton({ icon: Icon, isDark, onClick }: Props) {
+export function ThemeButton({
+  icon: Icon,
+  isDark,
+  onClick,
+  ...props
+}: Props & React.ComponentProps<"button">) {
   return (
     <button
       onClick={onClick}
       className="hover:cursor-pointer"
       aria-pressed={isDark}
+      {...props}
     >
       {/* svgファイルのheightとwidthを100%にしないといけない。webpackで設定可能？ */}
       <Icon
@@ -42,18 +48,28 @@ const ThemeSwitch = () => {
   const isDark = theme === "dark";
 
   return (
-    <div className="space-x-sm-100-to-md-200 flex items-center">
+    <div
+      role="toolbar"
+      aria-label="switch theme color"
+      className="space-x-sm-100-to-md-200 flex items-center"
+    >
       <ThemeButton
+        aria-label="switch light mode"
+        aria-pressed={theme === "light"}
         icon={IconSun}
         onClick={() => setTheme("light")}
         isDark={isDark}
       />
       <Switch
-        className="bg-purple-600 hover:cursor-pointer"
+        role="switch"
+        aria-label="switch theme color"
         checked={theme === "dark"}
+        className="bg-purple-600 hover:cursor-pointer"
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />
       <ThemeButton
+        aria-label="switch dark mode"
+        aria-pressed={theme === "dark"}
         icon={IconMoon}
         onClick={() => setTheme("dark")}
         isDark={isDark}

@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button/button";
 import Main from "@/shared/ui/main";
-import { Progress } from "@/shared/ui/progress/progress";
+import { ProgressBar } from "@/shared/ui/progress-bar/progress-bar";
 
 import { getOptionButtonState } from "../../model/quiz";
 import { QuestionProps } from "../../model/useQuesiton";
@@ -41,7 +41,11 @@ const OptionButtonList = ({
   questionState,
 }: QuestionProps) => {
   return (
-    <>
+    <div
+      className="space-y-sm-200-to-md-300"
+      role="radiogroup"
+      aria-label={currentQuestion.question}
+    >
       {currentQuestion.options.map((option, idx) => {
         // これをコンテナに持っていきたい。どうやって？？
         const optionState = getOptionButtonState(
@@ -52,9 +56,12 @@ const OptionButtonList = ({
         );
         return (
           <OptionButton
+            role="radio"
             isSelected={optionState.isSelected}
             disabled={questionState.submitted}
             key={idx}
+            type="button"
+            aria-checked={optionState.isSelected}
             option={option}
             no={optionState.optionText}
             onClick={() => events.handleOptionSelect(option)}
@@ -73,7 +80,7 @@ const OptionButtonList = ({
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
@@ -96,8 +103,9 @@ const QuestionSection = ({
         currentQuestionNum={currentQuestionNum}
         totalQuestionNum={totalQuestions}
       />
-      <Progress
+      <ProgressBar
         className="desktop:mt-2300 mt-400 mb-500 w-full"
+        aria-label="quiz progress"
         value={progress}
       />
     </div>

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { cn } from "@/shared/lib/utils";
 
-function Progress({
+function ProgressBar({
   className,
   value,
   ...props
@@ -13,6 +13,7 @@ function Progress({
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
+      role="progressbar"
       className={cn(
         "dark:bg-blue-850 h-200 w-full overflow-hidden rounded-full bg-white p-[4px]",
         className,
@@ -30,4 +31,4 @@ function Progress({
   );
 }
 
-export { Progress };
+export { ProgressBar };

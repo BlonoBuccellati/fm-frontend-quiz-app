@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Progress } from "./progress";
+import { ProgressBar } from "./progress-bar";
 
 const meta = {
-  component: Progress,
+  component: ProgressBar,
   title: "ui/Progress",
   tags: ["autodocs"],
-} satisfies Meta<typeof Progress>;
+} satisfies Meta<typeof ProgressBar>;
 
 export default meta;
 
